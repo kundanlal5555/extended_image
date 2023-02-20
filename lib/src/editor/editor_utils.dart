@@ -150,6 +150,62 @@ class EditActionDetails {
     }
   }
 
+  void setflipVertical() {
+    if (screenCropRect == null) {
+      return;
+    }
+    final Offset flipOrigin = screenCropRect!.center;
+    _flipX = !_flipX;
+    // if (isHalfPi) {
+    //   _flipX = !_flipX;
+    //   // _screenDestinationRect = Rect.fromLTRB(
+    //   //     screenDestinationRect.left,
+    //   //     2 * flipOrigin.dy - screenDestinationRect.bottom,
+    //   //     screenDestinationRect.right,
+    //   //     2 * flipOrigin.dy - screenDestinationRect.top);
+    // } else {
+    //   _flipY = !_flipY;
+    // }
+    _screenDestinationRect = Rect.fromLTRB(
+        2 * flipOrigin.dx - screenDestinationRect!.right,
+        screenDestinationRect!.top,
+        2 * flipOrigin.dx - screenDestinationRect!.left,
+        screenDestinationRect!.bottom);
+
+    if (_flipX && _flipY && isPi) {
+      _flipX = _flipY = false;
+      _rotateRadian = 0.0;
+    }
+  }
+
+  void setflipHorizontal() {
+    if (screenCropRect == null) {
+      return;
+    }
+    final Offset flipOrigin = screenCropRect!.center;
+    _flipX = !_flipX;
+    // if (isHalfPi) {
+    //   _flipX = !_flipX;
+    //   // _screenDestinationRect = Rect.fromLTRB(
+    //   //     screenDestinationRect.left,
+    //   //     2 * flipOrigin.dy - screenDestinationRect.bottom,
+    //   //     screenDestinationRect.right,
+    //   //     2 * flipOrigin.dy - screenDestinationRect.top);
+    // } else {
+    //   _flipY = !_flipY;
+    // }
+    _screenDestinationRect = Rect.fromLTRB(
+        2 * flipOrigin.dx - screenDestinationRect!.right,
+        screenDestinationRect!.top,
+        2 * flipOrigin.dx - screenDestinationRect!.left,
+        screenDestinationRect!.bottom);
+
+    if (_flipX && _flipY && isPi) {
+      _flipX = _flipY = false;
+      _rotateRadian = 0.0;
+    }
+  }
+
   ///screen image rect to paint rect
   Rect paintRect(Rect rect) {
     if (!hasEditAction || screenCropRect == null) {
